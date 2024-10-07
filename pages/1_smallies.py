@@ -1,10 +1,10 @@
 import streamlit as st
 from smallies_calculation import *
 
-st.header(f"Smallies 🐕‍🦺")
+st.header(f"Smallies 🐕")
 
 
-model_choice = st.sidebar.selectbox("Model: ", ("💧 fluid", "💊 drug dosage", "🩸 blood transfusion", "💉 hypokalaemia","🍼 nutrition"))
+model_choice = st.sidebar.selectbox("Model: ", ("💧 fluid", "💊 drug dosage", "🩸 blood transfusion", "💉 hypokalaemia","🍼 nutrition", "parvo", 'shock','antidotes'))
 st.divider()
 if model_choice == "💧 fluid":
     fluid_calc()
@@ -20,4 +20,12 @@ elif model_choice == "💉 hypokalaemia":
 
 elif model_choice == "🍼 nutrition":
     nutrition()
+
+elif model_choice == "parvo":
+    parvo()
+
+elif model_choice == "shock":
+    shock()
+elif model_choice == "antidotes":
+    antidotes()
 st.divider()

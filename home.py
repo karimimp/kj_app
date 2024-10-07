@@ -4,7 +4,7 @@ st.header(f"EZKJ Veterinary Cheat Sheets")
 
 
 
-st.page_link("pages/1_smallies.py", label="# **smallies**", icon="🐕‍🦺")
+st.page_link("pages/1_smallies.py", label="# **smallies**", icon="🐕")
 st.page_link("pages/2_equines.py", label="**equines**", icon="🐎")
 st.page_link("pages/3_ruminants.py", label="**ruminants**", icon="🐃")
 

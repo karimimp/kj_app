@@ -1,5 +1,6 @@
 import streamlit as st
 import numpy as np
+from PIL import Image
 
 def fluid_calc():
     st.subheader("Inputs:")
@@ -37,7 +38,7 @@ def fluid_calc():
     dosage4 = st.number_input(label = "dosage (mg/kg)", value = 0.5, format='%.1f')  
     drip = st.number_input(label = "drip rate (mL/hr)", value = 0.5, format='%.1f')    
     dose = bw*dosage4/conc4 #
-    st.markdown(f"give **:blue[{1000*dose/(drip*24)}mL]**") 
+    st.markdown(f"give **:blue[{1000*dose/(drip*24):.0f}mL]**") 
 
     # drip*24 : 1000 = dose : ???
     # shock rates
@@ -171,3 +172,150 @@ def nutrition():
     st.markdown(f"NG tube: nose ~ last rib") 
     st.markdown(f"oesophagostomy: mid cervical oesophagus ~ 5-8th ICS") 
 
+def parvo():
+    st.title("parvo")
+
+    st.subheader('TPR') 
+    
+
+    bw = st.number_input(label = "Body weight (kg)", value = 5.0, format='%.1f')
+
+    st.subheader('IP fluid') 
+    st.markdown('green or pink jelco, just below umbilirus @ linea alba')
+    st.markdown('1 L Ringers + 1 vial (20 mmol) KCL')
+    st.markdown('warm the bag to 38 deg')
+    st.markdown(f"give :blue[at least {bw*100:.1f} mL] IP")
+    st.markdown(f":grey[hypovolaemic]: give :blue[{bw*100*0.1:.1f} -{bw*100*0.2:.1f} mL] IV  + leave catheter in (bandage)")
+
+    st.divider()
+
+    st.subheader('medication')
+    st.markdown('**metoclopramide** (antiemetic)')
+    conc = 5/5
+    st.markdown('trade name: Clopamon/Metoclopramide 10/Clomax/Bio-metoclopramide/Adco-contromet')
+    st.markdown('concentration: 10 mg/tablet; 5 mg/5 mL syrup')
+    st.markdown('dosage: 0.3 - 0.5 mg/kg tid')
+    st.markdown(f'give tablet: :blue[{0.3*bw/10:.2f} - {0.5*bw/10:.2f} tablets 3 times a day] or syrup: :blue[{0.3*bw/conc:.2f} - {0.5*bw/conc:.2f} mL 3 times a day]')
+    st.markdown(f'dispense tablet: :blue[{0.3*bw/10*3*5:.2f} - {0.5*bw/10*3*5:.2f} tablets for 5 days] or syrup: :blue[{0.3*bw/conc*3*5:.2f} - {0.5*bw/conc*3*5:.2f} mL for 5 days]')
+    st.markdown('')
+    st.markdown('**Maropitant** (antiemetic)')
+    conc1 = 10
+    st.markdown('trade name: cerenia')
+    st.markdown('concentration: 16/24/60 mg tablets; 10 mg/mL injection')
+    st.markdown('dosage: 1 mg/kg q24 hrs up to 5 days')
+    image = Image.open('smallies\cerenia.jpg')
+    st.image(image)
+    st.markdown(f'SC injection: :blue[{bw/conc1:.2f} mL SC q24 hrs up to 5 days]')
+    st.markdown('')
+    st.markdown('**cisapride** (prokinetic) - if not recovering well')
+    st.markdown('dosage: 0.5 mL/kg tid on oral mucosa')
+    st.markdown(f'give tablet: :blue[{0.5*bw:.2f} mL 3 times a day]')
+    st.markdown(f'dispense tablet: :blue[{0.5*bw*3:.2f} mL per day]')
+    st.markdown('')
+    st.markdown('**Prolyte/Probiflora**')
+    st.markdown('electrolyte and gluytamine for enterocyte nutrition')
+
+    st.divider()
+
+    st.subheader('nutrition')
+    if bw >=2 and bw <=50:
+        feed = (bw*30.0) + 70
+    else:
+        feed = pow(bw,0.75)*70
+
+    st.markdown(f"required kCal/day = {feed} kCal")     
+    st.markdown(f"aim for 25% of required to start = {feed*0.25} kCal")  
+    st.markdown('encourage to syringe feed, not force feed')   
+
+
+def shock():
+    
+    st.title('Shock therapy')
+    bw = st.number_input(label = "Body weight (kg)", value = 10.0, format='%.1f') 
+    
+    st.subheader('emergency drugs')
+    st.markdown('**adrenaline** - anaphylaxis') 
+    st.markdown('dosage: 0.01 mg/kg')
+    st.markdown(f'conc: 1 mg/mL -> give :blue[{bw*0.01/1:.2f} mL]')
+    st.markdown('**adrenaline** - cardiac arrest')
+    st.markdown('dosage: 0.1 mg/kg')  
+    st.markdown(f'conc: 1 mg/mL -> give :blue[{bw*0.1/1:.2f} mL]')    
+    st.markdown('')
+    st.markdown('**atropine**')
+    st.markdown('dosage: 0.05 mg/kg')
+    st.markdown(f'conc: 0.5 mg/mL -> give :blue[{bw*0.05/0.5:.2f} mL]')
+    st.markdown(f'conc: 10 mg/mL -> give :blue[{bw*0.05/10:.2f} mL]')
+    st.markdown('')
+    st.markdown('**vasopressin** - ')
+    st.markdown('dosage: 0.8 units/kg')
+    st.markdown('')
+    st.markdown('**doxapram + O2** - respiratory arrest') 
+    st.markdown('dosage: 1 mg/kg')
+    st.markdown(f'conc: 400 mg/20 mL -> give :blue[{bw*1/(400/20):.2f} mL]')
+    st.markdown('')
+    st.markdown('**Lignocaine** - ventricular arrhythmia') 
+    st.markdown('dosage: 0.5 mg/kg')
+    st.markdown(f'conc: 20 mg/mL -> give :blue[{bw*0.5/20:.2f} mL]')
+    st.divider()
+
+    st.subheader('parameter monitoring')
+    st.markdown('Ht 35 - 45%')
+    st.markdown(f'urine 1-2 mL/kg/hr = {1*bw:.0f}-{2*bw:.0f} mL/hr')
+    st.markdown('RR 20-30')
+    st.markdown('temp 37-38.5')
+    st.markdown('HR 80-100')
+    st.markdown('CRT <1.2')
+    st.markdown('MAP > 60')
+    st.divider()
+
+    st.subheader('fluid')
+    st.markdown('**crystalloid**')
+    st.markdown(f'dog: :blue[{5*bw} - {20*bw} mL over 10 - 20 min]')
+    st.markdown(f'cat: :blue[{5*bw} - {15*bw} mL over 15 - 30 min]')
+    st.markdown('check parameters + repeat up to 3 times')
+    st.markdown('**colloid**')
+    st.markdown(f'dog: colloid {5*bw} - {20*bw} mL + crystalloid {5*bw/2} - {20*bw/2} mL')
+    st.markdown(f'cat: colloid {5*bw} - {15*bw} mL + crystalloid {5*bw/2} - {15*bw/2} mL ')    
+
+
+def antidotes():
+    st.subheader ('organophosphate/carbamate')
+    st.markdown('*atropine*')
+    st.markdown('*2-PM* (OP only)')
+    
+    st.subheader('acetaminophen (paracetamol)')
+    st.markdown('*N-acetylcystein* (within 4 hrs)')
+    st.markdown('*SAM-E* (antioxidant for liver)')
+    st.markdown('*cimetidine* (inhibit p450)')
+    
+    st.subheader('anticoagulant rodenticides')
+    st.markdown('*vit K1*')
+    
+    st.subheader ('ethylene glycol')
+    st.markdown('*ethanol 5%*')
+    st.markdown('*4-methylprazole*')
+
+    st.subheader ('emetics')
+    st.markdown('cat: xylazine')
+    st.markdown('dog: apomorphine')
+
+
+
+
+    # st.subheader("Inputs:")
+    # bw = st.number_input(label = "Body weight (kg)", value = 10.0, format='%.1f')  
+    # st.markdown(f"IV bolus 90 ml/kg in total = **{90*bw:.1f} mL**") 
+    # st.markdown(f"10% =  {90*bw*0.1:.1f} mL;   20% = {90*bw*0.2:.1f} mL;  30% = {90*bw*0.3:.1f} mL") 
+    # st.divider() 
+
+    # F_m = 80*bw # maintenance
+    # d = st.number_input(label = "Dehydration (%)", value=0.0, format='%.1f')
+    # F_d = bw*d*10  # dehydration
+    # F_l = st.number_input(label = "ongoing loss (mL/24hr)", value = 0.0, format='%.1f')
+    # R = (F_m + F_d + F_l)/24 # fluid rate
+    # st.markdown(f"maintenance 80 ml/kg/24hr = {F_m:.1f} mL/24hr") 
+    # st.markdown(f"dehydration = {F_d:.1f} mL/24hr") 
+    # st.markdown(f"estimated loss = {F_l:.1f} mL/24hr") 
+    # st.markdown(f"fluid needed over 24 hr = {F_m + F_d + F_l:.1f} mL/24hr")     
+    # st.markdown(f"      = {(F_m + F_d + F_l)/2:.1f} mL/12hr ={R:.1f} mL/hr" ) 
+    

@@ -265,7 +265,7 @@ def antibiotics():
         st.subheader(
             "procaine benzylpenicillin 150 mg + benzathine benzylpenicillin 115 mg"
         )
-        image = Image.open("ruminant_antibiotics/duplo.jpg")
+        image = Image.open("ruminant_antibiotics\duplo.jpg")
         st.image(image)
         st.markdown(
             "•	Uses: Treatment of infections caused by penicillin-sensitive organisms, such as respiratory infections, skin infections, and infections of the urogenital tract. Primarily effective against Gram-positive bacteria (Streptococcus, Staphylococcus) and some Gram-negative bacteria"
@@ -364,7 +364,7 @@ def antibiotics():
 
     if box == "Hi-Tet 120":  # 13
         st.subheader("Oxytetracycline (Tetracycline)")
-        image = Image.open("ruminant_antibiotics/Hi_Tet.jpg")
+        image = Image.open("ruminant_antibiotics/Hi_tet.jpg")
         st.image(image)
         st.markdown(
             "•	Uses: Respiratory infections, Pink eye, Foot rot, Tick-born diseases. Broad-spectrum activity against both Gram-positive and Gram-negative bacteria."
@@ -493,7 +493,7 @@ def antibiotics():
 
     if box == "Synulox RTU":  # 18
         st.subheader("Amoxicillin + Clavulanic Acid")
-        image = Image.open("ruminant_antibiotics/Synulox.jpg")
+        image = Image.open("ruminant_antibiotics/synulox.jpg")
 
         st.image(image)
         st.markdown(

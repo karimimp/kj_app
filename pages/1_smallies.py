@@ -4,7 +4,22 @@ from smallies_calculation import *
 st.header(f"Smallies 🐕")
 
 
-model_choice = st.sidebar.selectbox("Model: ", ("💧 fluid", "💊 drug dosage", "🩸 blood transfusion", "💉 hypokalaemia","🍼 nutrition", "parvo", 'shock','antidotes'))
+model_choice = st.sidebar.selectbox(
+    "Model: ",
+    (
+        "💧 fluid",
+        "💊 drug dosage",
+        "🩸 blood transfusion",
+        "💉 hypokalaemia",
+        "🍼 nutrition",
+        "parvo",
+        "shock",
+        "antidotes",
+        "antibiotics",
+        "antiinflammatory",
+        "antiemetic",
+    ),
+)
 st.divider()
 if model_choice == "💧 fluid":
     fluid_calc()
@@ -28,4 +43,11 @@ elif model_choice == "shock":
     shock()
 elif model_choice == "antidotes":
     antidotes()
+
+elif model_choice == "antibiotics":
+    antibiotics()
+elif model_choice == "antiinflammatory":
+    antiinflammatory()
+elif model_choice == "antiemetic":
+    antiemetic()
 st.divider()

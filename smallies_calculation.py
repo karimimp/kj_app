@@ -559,5 +559,70 @@ def antiinflammatory():
 
 def antiemetic():
     box = st.selectbox(
-        "Model: ", ("Cerenia", "Clopamon", "Ondansteron", "Cisapride", "Flagyl")
+        "Model: ",
+        (
+            "Cerenia",
+            "Clopamon",
+            "Ondansteron",
+            "Cisapride",
+        ),
     )
+    if box == "Cerenia":
+        st.subheader("Cerenia")
+        dose = 1.0
+        conc = 10.0
+        st.markdown("•	Concentration: 10 mg/ml")
+        st.markdown("•	Dosage: 1 mg/kg")
+
+        st.divider()
+        bw = st.number_input(label="Body weight (kg)", value=10.0, format="%.2f")
+        st.markdown(f"**dog**")
+        st.markdown(f"give :blue[{bw*dose/conc:.2f} mL IV q24 hr]")
+    elif box == "Clopamon":
+        st.subheader("Clopamon")
+        choice = st.radio("", ["IV", "Syrup", "Tablet"])
+        if choice == "IV":
+            conc = 5.0
+            dose = 0.5
+            st.markdown("•	Concentration: 5 mg/ml")
+            st.markdown("•	Dosage: 0.5 mg/kg")
+            st.divider()
+            bw = st.number_input(label="Body weight (kg)", value=10.0, format="%.2f")
+            st.markdown(f"**dog**")
+            st.markdown(f"give :blue[{bw*dose/conc:.2f} mL IV q8 hr]")
+        elif choice == "Syrup":
+            conc = 1.0
+            dose = 0.5
+            st.markdown("•	Concentration: 1 mg/ml")
+            st.markdown("•	Dosage: 0.5 mg/kg")
+            st.divider()
+            bw = st.number_input(label="Body weight (kg)", value=10.0, format="%.2f")
+            st.markdown(f"**dog**")
+            st.markdown(f"give :blue[{bw*dose/conc:.2f} mL syrup q8 hr]")
+        elif choice == "Tablet":
+            conc = 10.0
+            dose = 0.5
+            st.markdown("•	Concentration: 10 mg/tablet")
+            st.markdown("•	Loading dosage: 0.5 mg/kg")
+            st.divider()
+            bw = st.number_input(label="Body weight (kg)", value=10.0, format="%.2f")
+            st.markdown(f"**dog**")
+            st.markdown(f"give :blue[{bw*dose/conc:.2f} tablets  q8 hr]")
+    elif box == "Ondansteron":
+        conc = 2.0
+        dose = 0.5
+        st.markdown("•	Concentration: 2 mg/ml")
+        st.markdown("•	Dosage: 0.5 mg/kg")
+        st.divider()
+        bw = st.number_input(label="Body weight (kg)", value=10.0, format="%.2f")
+        st.markdown(f"**dog**")
+        st.markdown(f"give :blue[{bw*dose/conc:.2f} mL slow IV q8 hr]")
+    elif box == "Cisapride":
+        conc = 10.0
+        dose = 1
+        st.markdown("•	Concentration: 10 mg/ml")
+        st.markdown("•	Dosage: 1 mg/kg")
+        st.divider()
+        bw = st.number_input(label="Body weight (kg)", value=10.0, format="%.2f")
+        st.markdown(f"**dog**")
+        st.markdown(f"give :blue[{bw*dose/conc:.2f} mL gum q24 hr]")

@@ -7,6 +7,7 @@ st.header(f"Smallies 🐕")
 model_choice = st.sidebar.selectbox(
     "Model: ",
     (
+        "spay",
         "💧 fluid",
         "💊 drug dosage",
         "🩸 blood transfusion",
@@ -23,6 +24,9 @@ model_choice = st.sidebar.selectbox(
 st.divider()
 if model_choice == "💧 fluid":
     fluid_calc()
+
+elif model_choice == "spay":
+    spay()
 
 elif model_choice == "💊 drug dosage":
     drug()

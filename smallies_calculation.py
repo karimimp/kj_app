@@ -3,6 +3,26 @@ import numpy as np
 from PIL import Image
 
 
+def spay():
+    st.subheader("Inputs:")
+    bw = st.number_input(label="Body weight (kg)", value=10.0, format="%.1f")
+    if bw < 5:
+        drip_set = 60
+    else:
+        drip_set = 20
+    st.markdown(f"Morphine = :blue[{bw*0.3/10:.2f}] mL")
+    st.markdown(f"Medetomidine = :blue[{bw*0.01/1:.2f}] mL")
+    st.markdown(f"Propofol 4mg/kg = :blue[{bw*4/10:.2f}] mL")
+    st.markdown(f"Propofol 6mg/kg = :blue[{bw*6/10:.2f}] mL")
+    st.markdown(f"Cefazolin = :blue[{bw*20/100:.2f}] mL")
+    st.markdown(f"Metacam = :blue[{bw*0.2/5:.2f}] mL")
+    st.markdown(f"Morphine = :blue[{bw*0.2/10:.2f}] mL")
+    st.markdown(f"Cefazolin = :blue[{bw*20/100:.2f}] mL")
+    st.markdown(
+        f"Ringers = :blue[{bw*5*drip_set/(60*60):.2f}] drops/s = {1/(bw*5*drip_set/(60*60)):.0f}s/drop"
+    )
+
+
 def fluid_calc():
     st.subheader("Inputs:")
     bw = st.number_input(label="Body weight (kg)", value=10.0, format="%.1f")
